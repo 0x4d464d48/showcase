@@ -16,20 +16,49 @@ function DemoController() {
   vm.item = 'Hello Clevland!';
 }
 
+const dogPictureHtml = `
+  <div>
+    <div ng-if="!!vm.imgUrl">
+      <img src="{{vm.imgUrl}}"></img>
+    </div>
+    <div>
+      <button ng-click="vm.getNewPicture()">Get a new kitty picture!</button>
+    </div>
+  </div>
+  `;
+
 function demoDirective() {
   var directive = {
-    template: '<h1>Here\'s a directive!</h1>',
+    template: dogPictureHtml,
+    controller: CatController,
+    controllerAs: 'vm',
     restrict: 'E',
   };
 
   return directive;
 }
 
+function CatController() {
+  var vm = this;
+
+  vm.imgUrl = undefined;
+
+  vm.getNewPicture = () => {
+    fetch('https://api.thecatapi.com/v1/images/search')
+      .then(response => {
+        console.log(response)
+        response
+          .json()
+          .then(data => {
+            vm.imgUrl = data[0].url});
+      });
+  }; 
+}
+
 angular
   .module('app', [
     'app.demo',
   ]);
-
     </script>
   </head>
   <body ng-app="app">
