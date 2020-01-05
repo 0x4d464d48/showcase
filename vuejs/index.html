@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <hello-there></hello-there>
+    </div>
+    <script>
+
+Vue.component('hello-there', {
+  template: '<h1>Hello there!</h1>'
+});
+
+new Vue({ el: '#app'});
+    </script>
+  </body>
+</html>
+

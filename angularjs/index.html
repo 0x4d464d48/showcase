@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+    <script>
+angular
+  .module('app.demo', [])
+  .controller('DemoController', DemoController)
+  .directive('demoDirective', demoDirective);
+
+DemoController.$inject = [];
+
+function DemoController() {
+  var vm = this;
+
+  vm.item = 'Hello Clevland!';
+}
+
+function demoDirective() {
+  var directive = {
+    template: '<h1>Here\'s a directive!</h1>',
+    restrict: 'E',
+  };
+
+  return directive;
+}
+
+angular
+  .module('app', [
+    'app.demo',
+  ]);
+
+    </script>
+  </head>
+  <body ng-app="app">
+    <demo-directive></demo-directive>
+    <div ng-controller="DemoController as demo">
+      {{ demo.item }}
+    </div>
+  </body>
+</html>
+
