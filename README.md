@@ -1,2 +1,2 @@
 # showcase
-This a repo to showcase front-end skills on my website
+This a repo of FE dogfood
